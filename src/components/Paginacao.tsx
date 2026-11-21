@@ -16,9 +16,9 @@ export function Paginacao({
   if (totalRegistros === 0) return null;
 
   return (
-    <nav className="paginacao" aria-label="Navega\u00e7\u00e3o de p\u00e1ginas">
+    <nav className="paginacao" aria-label="Navegação de páginas">
       <span className="paginacao-info">
-        Mostrando p\u00e1gina <strong>{paginaAtual}</strong> de{" "}
+        Mostrando página <strong>{paginaAtual}</strong> de{" "}
         <strong>{totalPaginas}</strong> ({totalRegistros} clientes)
       </span>
 
@@ -28,7 +28,7 @@ export function Paginacao({
           className="btn-pagina"
           onClick={() => aoMudarPagina(paginaAtual - 1)}
           disabled={paginaAtual <= 1}
-          aria-label="P\u00e1gina anterior"
+          aria-label="Página anterior"
         >
           <ChevronLeft size={18} aria-hidden="true" />
           <span>Anterior</span>
@@ -39,9 +39,9 @@ export function Paginacao({
           className="btn-pagina"
           onClick={() => aoMudarPagina(paginaAtual + 1)}
           disabled={paginaAtual >= totalPaginas}
-          aria-label="Pr\u00f3xima p\u00e1gina"
+          aria-label="Próxima página"
         >
-          <span>Pr\u00f3xima</span>
+          <span>Próxima</span>
           <ChevronRight size={18} aria-hidden="true" />
         </button>
       </div>

@@ -25,9 +25,9 @@ export function ListaClientes({ clientes, aoSelecionarCliente }: ListaClientesPr
             <th scope="col">Nome</th>
             <th scope="col">CPF / CNPJ</th>
             <th scope="col">E-mail</th>
-            <th scope="col">Ag\u00eancia</th>
+            <th scope="col">Agência</th>
             <th scope="col" className="coluna-acoes">
-              A\u00e7\u00f5es
+              Ações
             </th>
           </tr>
         </thead>

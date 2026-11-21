@@ -1,11 +1,11 @@
-// Valores validos para EstadoCivil e TipoConta
-export type EstadoCivil = "Solteiro" | "Casado" | "Viuvo" | "Divorciado";
+// Tipos literais (Union Types) garantem que apenas valores válidos sejam aceitos
+export type EstadoCivil = "Solteiro" | "Casado" | "Viúvo" | "Divorciado";
 export type TipoConta = "corrente" | "poupanca";
 
 export interface Cliente {
   id: string;
   cpfCnpj: string;
-  rg?: string;
+  rg?: string; 
   dataNascimento: Date;
   nome: string;
   nomeSocial?: string;

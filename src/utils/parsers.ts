@@ -1,21 +1,21 @@
 import { EstadoCivil, TipoConta } from "../types/bank";
 
 /**
- * Converte strings numericas (ex: "1.250,50", "R$ 500,00" ou "1250.50") em number valido.
- * Retorna 0 caso o valor seja vazio ou invalido.
+ * Converte strings numéricas (ex: "1.250,50", "R$ 500,00" ou "1250.50") em number válido.
+ * Retorna 0 caso o valor seja vazio ou inválido.
  */
 export function parseNumero(valor: unknown): number {
   if (typeof valor === "number") return isNaN(valor) ? 0 : valor;
   if (!valor || typeof valor !== "string") return 0;
 
-  // Remove "R$", espacos e caracteres nao numericos exceto ponto, virgula e sinal negativo
+  // Remove "R$", espaços e caracteres não numéricos exceto ponto, vírgula e sinal negativo
   let limpo = valor.replace(/[^\d.,-]/g, "").trim();
 
-  // Se houver virgula e ponto (ex: "1.500,75"), remove os pontos de milhar e troca virgula por ponto
+  // Se houver vírgula e ponto (ex: "1.500,75"), remove os pontos de milhar e troca vírgula por ponto
   if (limpo.includes(",") && limpo.includes(".")) {
     limpo = limpo.replace(/\./g, "").replace(",", ".");
   } else if (limpo.includes(",")) {
-    // Se houver apenas virgula (ex: "1500,75"), troca por ponto
+    // Se houver apenas vírgula (ex: "1500,75"), troca por ponto
     limpo = limpo.replace(",", ".");
   }
 
@@ -39,14 +39,14 @@ export function parseData(valor: unknown): Date {
     }
   }
 
-  // Formato ISO: AAAA-MM-DD (adiciona T00:00:00 para evitar problemas de fuso horario)
+  // Formato ISO: AAAA-MM-DD (adiciona T00:00:00 para evitar problemas de fuso horário)
   const dataIso = new Date(limpo.includes("T") ? limpo : `${limpo}T00:00:00`);
   return isNaN(dataIso.getTime()) ? new Date() : dataIso;
 }
 
 /**
- * Mantem apenas os digitos de um CPF/CNPJ e restaura zeros a esquerda
- * caso a planilha tenha removido (11 digitos para CPF, 14 para CNPJ).
+ * Mantém apenas os dígitos de um CPF/CNPJ e restaura zeros à esquerda
+ * caso a planilha tenha removido (11 dígitos para CPF, 14 para CNPJ).
  */
 export function normalizarCpfCnpj(valor: unknown): string {
   if (!valor) return "";
@@ -72,7 +72,7 @@ export function parseEstadoCivil(valor: unknown): EstadoCivil {
     .replace(/[\u0300-\u036f]/g, "");
 
   if (texto.startsWith("casad")) return "Casado";
-  if (texto.startsWith("viuv")) return "Vi\u00favo";
+  if (texto.startsWith("viuv")) return "Viúvo";
   if (texto.startsWith("divorciad")) return "Divorciado";
   return "Solteiro";
 }
@@ -85,7 +85,7 @@ export function parseTipoConta(valor: unknown): TipoConta {
     .trim()
     .toLowerCase()
     .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, ""); // Remove acentos ("poupanca")
+    .replace(/[\u0300-\u036f]/g, ""); // Remove acentos ("poupança" -> "poupanca")
 
   return texto === "poupanca" ? "poupanca" : "corrente";
 }
