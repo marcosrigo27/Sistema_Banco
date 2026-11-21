@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { UserPlus, X } from "lucide-react";
-import { Agencia, Cliente } from "../types/bank";
-import { ClienteFormData, clienteSchema } from "../schemas/clienteSchema";
+import type { Agencia, Cliente } from "../types/bank";
+import type { ClienteFormData, clienteSchema } from "../schemas/clienteSchema";
 import { normalizarCpfCnpj } from "../utils/parsers";
 
 interface CadastroClienteModalProps {

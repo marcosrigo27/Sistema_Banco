@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Building2, CreditCard, User, X } from "lucide-react";
-import { Agencia, Cliente, Conta } from "../types/bank";
+import type { Agencia, Cliente, Conta } from "../types/bank";
 import { formatarCpfCnpj, formatarData, formatarMoeda } from "../utils/formatters";
 
 interface DetalhesClienteModalProps {

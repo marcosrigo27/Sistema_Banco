@@ -1,5 +1,5 @@
 import Papa from "papaparse";
-import { Agencia, Cliente, Conta } from "../types/bank";
+import type { Agencia, Cliente, Conta } from "../types/bank";
 import {
   normalizarCpfCnpj,
   parseData,

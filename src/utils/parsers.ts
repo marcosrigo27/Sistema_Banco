@@ -1,4 +1,4 @@
-import { EstadoCivil, TipoConta } from "../types/bank";
+import type { EstadoCivil, TipoConta } from "../types/bank";
 
 /**
  * Converte strings numéricas (ex: "1.250,50", "R$ 500,00" ou "1250.50") em number válido.

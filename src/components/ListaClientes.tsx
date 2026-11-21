@@ -1,5 +1,5 @@
 import { Eye, User } from "lucide-react";
-import { Cliente } from "../types/bank";
+import type { Cliente } from "../types/bank";
 import { formatarCpfCnpj } from "../utils/formatters";
 
 interface ListaClientesProps {
