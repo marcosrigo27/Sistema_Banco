@@ -48,11 +48,10 @@ export function CadastroClienteModal({
   function onSubmit(dados: ClienteFormData) {
     const cpfCnpjLimpo = normalizarCpfCnpj(dados.cpfCnpj);
 
-    // Impede cadastro duplicado do mesmo CPF/CNPJ em memoria
     if (cpfsExistentes.includes(cpfCnpjLimpo)) {
       setError("cpfCnpj", {
         type: "manual",
-        message: "J\u00e1 existe um cliente cadastrado com este CPF/CNPJ.",
+        message: "Já existe um cliente cadastrado com este CPF/CNPJ.",
       });
       return;
     }
@@ -94,7 +93,7 @@ export function CadastroClienteModal({
             type="button"
             className="btn-fechar-modal"
             onClick={aoFechar}
-            aria-label="Fechar formul\u00e1rio de cadastro"
+            aria-label="Fechar formulário de cadastro"
           >
             <X size={20} aria-hidden="true" />
           </button>
@@ -137,7 +136,7 @@ export function CadastroClienteModal({
                 <input
                   id="cpfCnpj"
                   type="text"
-                  placeholder="Somente n\u00fameros ou formatado"
+                  placeholder="Somente números ou formatado"
                   aria-invalid={!!errors.cpfCnpj}
                   {...register("cpfCnpj")}
                 />
@@ -185,7 +184,7 @@ export function CadastroClienteModal({
                 >
                   <option value="Solteiro">Solteiro</option>
                   <option value="Casado">Casado</option>
-                  <option value="Vi\u00favo">Vi\u00favo</option>
+                  <option value="Viúvo">Viúvo</option>
                   <option value="Divorciado">Divorciado</option>
                 </select>
                 {errors.estadoCivil && (
@@ -212,16 +211,16 @@ export function CadastroClienteModal({
                 )}
               </div>
 
-              {/* Agencia */}
+              {/* Agência */}
               <div className="campo-grupo">
-                <label htmlFor="codigoAgencia">Ag\u00eancia *</label>
+                <label htmlFor="codigoAgencia">Agência *</label>
                 <select
                   id="codigoAgencia"
                   aria-invalid={!!errors.codigoAgencia}
                   {...register("codigoAgencia", { valueAsNumber: true })}
                 >
                   {agencias.length === 0 && (
-                    <option value={0}>Nenhuma ag\u00eancia dispon\u00edvel</option>
+                    <option value={0}>Nenhuma agência disponível</option>
                   )}
                   {agencias.map((ag) => (
                     <option key={ag.id} value={ag.codigo}>
@@ -254,9 +253,9 @@ export function CadastroClienteModal({
                 )}
               </div>
 
-              {/* Patrimonio */}
+              {/* Patrimônio */}
               <div className="campo-grupo">
-                <label htmlFor="patrimonio">Patrim\u00f4nio (R$) *</label>
+                <label htmlFor="patrimonio">Patrimônio (R$) *</label>
                 <input
                   id="patrimonio"
                   type="number"
@@ -272,13 +271,13 @@ export function CadastroClienteModal({
                 )}
               </div>
 
-              {/* Endereco */}
+              {/* Endereço */}
               <div className="campo-grupo campo-largo">
-                <label htmlFor="endereco">Endere\u00e7o Completo *</label>
+                <label htmlFor="endereco">Endereço Completo *</label>
                 <input
                   id="endereco"
                   type="text"
-                  placeholder="Rua, n\u00famero, bairro, cidade - UF"
+                  placeholder="Rua, número, bairro, cidade - UF"
                   aria-invalid={!!errors.endereco}
                   {...register("endereco")}
                 />

@@ -17,7 +17,7 @@ export const clienteSchema = z.object({
         const digitos = val.replace(/\D/g, "");
         return digitos.length === 11 || digitos.length === 14;
       },
-      { message: "Informe um CPF (11 d\u00edgitos) ou CNPJ (14 d\u00edgitos) v\u00e1lido." }
+      { message: "Informe um CPF (11 dígitos) ou CNPJ (14 dígitos) válido." }
     ),
   rg: z
     .string()
@@ -25,36 +25,35 @@ export const clienteSchema = z.object({
     .optional(),
   dataNascimento: z
     .string()
-    .min(1, "A data de nascimento \u00e9 obrigat\u00f3ria.")
+    .min(1, "A data de nascimento é obrigatória.")
     .refine(
       (val) => {
         const data = new Date(`${val}T00:00:00`);
         return !isNaN(data.getTime()) && data <= new Date();
       },
-      { message: "Informe uma data de nascimento v\u00e1lida e n\u00e3o futura." }
+      { message: "Informe uma data de nascimento válida e não futura." }
     ),
   email: z
     .string()
     .trim()
-    .email("Informe um endere\u00e7o de e-mail v\u00e1lido."),
+    .email("Informe um endereço de e-mail válido."),
   endereco: z
     .string()
     .trim()
-    .min(5, "O endere\u00e7o deve ter pelo menos 5 caracteres."),
+    .min(5, "O endereço deve ter pelo menos 5 caracteres."),
   rendaAnual: z
-    .number({ invalid_type_error: "Informe um valor num\u00e9rico v\u00e1lido." })
-    .min(0, "A renda anual n\u00e3o pode ser negativa."),
+    .number({ invalid_type_error: "Informe um valor numérico válido." })
+    .min(0, "A renda anual não pode ser negativa."),
   patrimonio: z
-    .number({ invalid_type_error: "Informe um valor num\u00e9rico v\u00e1lido." })
-    .min(0, "O patrim\u00f4nio n\u00e3o pode ser negativo."),
-  estadoCivil: z.enum(["Solteiro", "Casado", "Vi\u00favo", "Divorciado"], {
-    errorMap: () => ({ message: "Selecione um estado civil v\u00e1lido." }),
+    .number({ invalid_type_error: "Informe um valor numérico válido." })
+    .min(0, "O patrimônio não pode ser negativo."),
+  estadoCivil: z.enum(["Solteiro", "Casado", "Viúvo", "Divorciado"], {
+    errorMap: () => ({ message: "Selecione um estado civil válido." }),
   }),
   codigoAgencia: z
-    .number({ invalid_type_error: "Selecione uma ag\u00eancia." })
+    .number({ invalid_type_error: "Selecione uma agência." })
     .int()
-    .positive("Selecione uma ag\u00eancia v\u00e1lida."),
+    .positive("Selecione uma agência válida."),
 });
 
-// Infere automaticamente o tipo TypeScript dos dados do formulario a partir do schema
 export type ClienteFormData = z.infer<typeof clienteSchema>;
